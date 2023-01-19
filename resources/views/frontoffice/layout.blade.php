@@ -85,7 +85,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="index.html">
+                    <a href="{{route('user.index')}}">
                         CRM | Employees
                     </a>
                     <a class="mobile-options waves-effect waves-light">

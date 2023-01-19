@@ -10,8 +10,6 @@
         <link rel="stylesheet" href="{{asset('css/backoffice/feather.css')}}">
         <link rel="stylesheet" href="{{asset('css/backoffice/app-light.css')}}" id="lightTheme">
         @yield('css')
-        {{-- <link rel="stylesheet" href="cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
-        <script src="cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script> --}}
     </head>
   <body class="vertical  light  ">
     <div class="wrapper">
@@ -45,7 +43,7 @@
         <nav class="vertnav navbar navbar-light">
           <!-- nav bar -->
           <div class="w-100 mb-4 d-flex">
-            <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
+            <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="{{route('admin.manage.index')}}">
               <svg version="1.1" id="logo" class="navbar-brand-img brand-sm" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120" xml:space="preserve">
                 <g>
                   <polygon class="st0" points="78,105 15,105 24,87 87,87 	" />

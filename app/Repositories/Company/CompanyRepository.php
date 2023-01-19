@@ -3,6 +3,7 @@
 namespace App\Repositories\Company;
 
 use App\Models\Company;
+use App\Models\Invitation;
 use Illuminate\Http\Request;
 
 class CompanyRepository
@@ -43,7 +44,6 @@ class CompanyRepository
 
     /**
      * Returns count of employees related to the object resource
-     * All employees are included in this count ( even the invited once )
      * 
      * @param \App\Models\Company $company
      * @return Integer
@@ -51,6 +51,18 @@ class CompanyRepository
     public function getCountEmployees(Company $company): int
     {
         return $company->employees()->get()->count();
+    }
+
+    /**
+     * Returns count of employees invited under the specified record
+     * Only the pending invitations are concerned with this count
+     * 
+     * @param \App\Models\Company $company
+     * @return Integer
+     */
+    public function getCountPendingInvitations(Company $company)
+    {
+        return $company->invitations()->where(Invitation::STATUS_COLUMN, Invitation::PENDING)->get()->count();
     }
 
     /**

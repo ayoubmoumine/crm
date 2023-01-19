@@ -51,9 +51,10 @@ class CompanyService
     public function destroy(Company $company): RedirectResponse
     {
         $countEmployees = $this->companyRepository->getCountEmployees($company);
-        if( $countEmployees !== 0 )
+        $countPendingInvitations = $this->companyRepository->getCountPendingInvitations($company);
+        if( $countEmployees !== 0 || $countPendingInvitations !== 0  )
         {
-            return redirect()->back()->with('error', 'This company can not be deleted, it still has employees');
+            return redirect()->back()->with('error', 'This company can not be deleted, it has employees or pending invitations');
         }
 
         $this->companyRepository->destroy($company);

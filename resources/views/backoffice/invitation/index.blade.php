@@ -22,7 +22,7 @@
         <table class="table datatables" id="dataTable-1">
           <thead>
             <tr>
-              <th>Company ID</th>
+              <th>Company Name</th>
               <th>Employee Name</th>
               <th>Employee Email</th>
               <th>Status</th>
