@@ -48,7 +48,8 @@ class CompanyController extends Controller
      */
     public function store(CompanyStoreRequest $request): RedirectResponse
     {
-        return $this->companyService->store($request);
+        $data = $request->validated();
+        return $this->companyService->store($data);
     }
 
     /**
@@ -82,7 +83,8 @@ class CompanyController extends Controller
      */
     public function update(CompanyUpdateRequest $request, Company $company): RedirectResponse
     {
-        $this->companyService->update($request, $company);
+        $data = $request->validated();
+        $this->companyService->update($data, $company);
         return redirect()->route('admin.company.show', $company->getKey())->with('success', 'Company was updated successfully !');
     }
 

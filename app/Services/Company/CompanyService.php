@@ -2,8 +2,6 @@
 
 namespace App\Services\Company;
 
-use App\Http\Requests\Company\CompanyStoreRequest;
-use App\Http\Requests\Company\CompanyUpdateRequest;
 use App\Models\Company;
 use App\Repositories\Company\CompanyRepository;
 use Illuminate\Http\RedirectResponse;
@@ -18,35 +16,30 @@ class CompanyService
         $this->companyRepository = $companyRepository;
     }
 
-    public function store(CompanyStoreRequest $request)
+    /**
+     * Stores a newly created record
+     * 
+     * @param Array $data
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(array $data): RedirectResponse
     {
-        $data = [
-            'company_name' => $request->company_name,
-            'ice' => $request->ice,
-            'address' => $request->address,
-            'country' => $request->country,
-            'city' => $request->city,
-            'phone_number' => $request->phone_number,
-        ];
-        
         $response = $this->companyRepository->store($data);
         return $response ? 
                     redirect()->route('admin.company.index')->with('success', 'Company was added successfully !') : 
                     redirect()->back()->with('error', 'Operation failed, company was not able to be created');
     }
 
-    public function update(CompanyUpdateRequest $request, Company $company)
+    /**
+     * Updates details for a record
+     * 
+     * @param Array $data
+     * @param \App\Models\Company $company
+     * @return void
+     */
+    public function update(array $data, Company $company): void
     {
-        $data = [
-            'company_name' => $request->company_name,
-            'ice' => $request->ice,
-            'address' => $request->address,
-            'country' => $request->country,
-            'city' => $request->city,
-            'phone_number' => $request->phone_number,
-        ];
-
-        return $this->companyRepository->update($company, $data);
+        $this->companyRepository->update($company, $data);
     }
     
     /**

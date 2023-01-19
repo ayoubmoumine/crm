@@ -32,7 +32,7 @@ class AuthController extends Controller
     /**
      * Authenticate admin.
      * 
-     * @param LoginRequest $request
+     * @param \App\Http\Requests\Admin\AdminLoginRequest $request
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
     public function authenticate(AdminLoginRequest $request): RedirectResponse
@@ -58,6 +58,6 @@ class AuthController extends Controller
     public function logout(Request $request): RedirectResponse
     {
         $this->authService->logout($request);
-        return redirect()->route('admin.manage.login');
+        return redirect()->route('admin.login');
     }
 }

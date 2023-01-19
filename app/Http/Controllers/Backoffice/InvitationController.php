@@ -49,7 +49,8 @@ class InvitationController extends Controller
      */
     public function store(InvitationStoreRequest $request): RedirectResponse
     {
-        $this->invitationService->store($request);
+        $data = $request->validated();
+        $this->invitationService->store($data);
         return redirect()->route('admin.invitations.index');
     }
 

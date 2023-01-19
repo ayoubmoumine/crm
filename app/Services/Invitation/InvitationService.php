@@ -26,34 +26,29 @@ class InvitationService
     /**
      * Prepare data to store a new resource.
      * 
-     * @param \App\Http\Requests\Invitation\InvitationStoreRequest $request
+     * @param Array $data
      * @return void
      */
-    public function store(InvitationStoreRequest $request): void
+    public function store(array $data): void
     {
         $token = $this->generateToken();
         $url = route('user.register').'?registration_token='.$token;
 
-        $data = [
-            'company_id' => $request->company_id,
-            'employee_name' => $request->employee_name,
-            'employee_email' => $request->employee_email,
-            'status' => Invitation::PENDING,
-            'invitation_link' => $url,
-            'token' => $token
-        ];
+        $data['status'] = Invitation::PENDING;
+        $data['invitation_link'] = $url;
+        $data['token'] = $token;
         
         $this->invitationRepository->store($data);
 
         Log::channel('invitation')->info(
             sprintf('An invitation was created by %s (admin), and sent to %s with the email %s', 
                         auth()->user()->getName(), 
-                        $request->employee_name, 
-                        $request->employee_email
+                        $data['employee_name'], 
+                        $data['employee_email']
             )
         );
 
-        $this->sendInvitationEmail($url, $request->employee_email, $request->employee_name);
+        $this->sendInvitationEmail($url, $data['employee_email'], $data['employee_name']);
     }
 
     protected function generateToken()

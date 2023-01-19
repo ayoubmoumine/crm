@@ -47,7 +47,8 @@ class AdminController extends Controller
      */
     public function store(AdminStoreRequest $request)
     {
-        return $this->adminService->store($request);
+        $data = $request->safe()->except('confirmPassword');
+        return $this->adminService->store($data);
     }
 
     /**
@@ -81,7 +82,8 @@ class AdminController extends Controller
      */
     public function update(AdminUpdateRequest $request, Admin $admin): RedirectResponse
     {
-        $this->adminService->update($request, $admin);
+        $data = $request->validated();
+        $this->adminService->update($data, $admin);
         return redirect()->route('admin.manage.index')->with('success', 'Updated successfully !');
     }
 

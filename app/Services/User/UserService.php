@@ -63,9 +63,9 @@ class UserService
             'name' => $request->name,
             'address' => $request->address,
             'phone_number' => $request->phone_number,
-            'birth_date' => $request->birth_date,
+            'birth_date' => date('Y-m-d', strtotime($request->birth_date)),
         ];
-
+        
         if(
             $request->has('name') && 
             $request->has('address') && 

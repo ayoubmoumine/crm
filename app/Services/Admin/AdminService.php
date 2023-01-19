@@ -2,8 +2,6 @@
 
 namespace App\Services\Admin;
 
-use App\Http\Requests\Admin\AdminStoreRequest;
-use App\Http\Requests\Admin\AdminUpdateRequest;
 use App\Models\Admin;
 use App\Repositories\Admin\AdminRepository;
 use Illuminate\Http\RedirectResponse;
@@ -22,17 +20,12 @@ class AdminService
     /**
      * Prepare data to store a new resource.
      *
-     * @param  \App\Http\Requests\Admin\AdminStoreRequest  $request
+     * @param  Array $data
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(AdminStoreRequest $request): RedirectResponse
+    public function store(array $data): RedirectResponse
     {
-        $data = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
-        ];
-
+        $data['password'] = Hash::make($data['password']);
         $response = $this->adminRepository->store($data);
         return $response ? redirect()->route('admin.manage.index')->with('success', 'New admin is added !') : redirect()->back()->with('error', 'Registration failed');
     }
@@ -40,17 +33,12 @@ class AdminService
     /**
      * Prepare data to update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Array $data
      * @param  \App\Models\Admin $admin
      * @return void
      */
-    public function update(AdminUpdateRequest $request, Admin $admin): void
+    public function update(array $data, Admin $admin): void
     {
-        $data = [
-            'name' => $request->name,
-            'email' => $request->email
-        ];
-        
         $this->adminRepository->update($data, $admin);
     }
 
