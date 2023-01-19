@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\LoginRequest;
+use App\Http\Requests\Admin\AdminLoginRequest;
 use App\Services\Admin\AuthService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -35,7 +35,7 @@ class AuthController extends Controller
      * @param LoginRequest $request
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
-    public function authenticate(LoginRequest $request): RedirectResponse
+    public function authenticate(AdminLoginRequest $request): RedirectResponse
     {
         return $this->authService->authenticate($request);
     }

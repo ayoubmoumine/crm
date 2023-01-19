@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Invitation\StoreRequest;
+use App\Http\Requests\Invitation\InvitationStoreRequest;
 use App\Models\Company;
 use App\Models\Invitation;
 use App\Services\Invitation\InvitationService;
@@ -44,10 +44,10 @@ class InvitationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Invitation\StoreRequest  $request
+     * @param  \App\Http\Requests\Invitation\InvitationStoreRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreRequest $request): RedirectResponse
+    public function store(InvitationStoreRequest $request): RedirectResponse
     {
         $this->invitationService->store($request);
         return redirect()->route('admin.invitations.index');

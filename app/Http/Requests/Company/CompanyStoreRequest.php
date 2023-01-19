@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Company;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UpdateRequest extends FormRequest
+class CompanyStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +24,12 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => ['required', 'email', Rule::unique('admins')->ignore($this->admin->id, 'id')],
+            'company_name' => 'required',
+            'ice' => 'required',
+            'address' => 'required',
+            'phone_number' => 'required',
+            'country' => 'required',
+            'city' => 'required',
         ];
     }
 }

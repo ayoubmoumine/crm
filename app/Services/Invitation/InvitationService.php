@@ -3,7 +3,7 @@
 namespace App\Services\Invitation;
 
 use Illuminate\Support\Str;
-use App\Http\Requests\Invitation\StoreRequest;
+use App\Http\Requests\Invitation\InvitationStoreRequest;
 use App\Mail\InvitationEmail;
 use App\Models\Invitation;
 use App\Repositories\Invitation\InvitationRepository;
@@ -26,10 +26,10 @@ class InvitationService
     /**
      * Prepare data to store a new resource.
      * 
-     * @param \App\Http\Requests\Invitation\StoreRequest $request
+     * @param \App\Http\Requests\Invitation\InvitationStoreRequest $request
      * @return void
      */
-    public function store(StoreRequest $request): void
+    public function store(InvitationStoreRequest $request): void
     {
         $token = $this->generateToken();
         $url = route('user.register').'?registration_token='.$token;

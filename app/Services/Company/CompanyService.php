@@ -2,8 +2,8 @@
 
 namespace App\Services\Company;
 
-use App\Http\Requests\Company\StoreRequest;
-use App\Http\Requests\Company\UpdateRequest;
+use App\Http\Requests\Company\CompanyStoreRequest;
+use App\Http\Requests\Company\CompanyUpdateRequest;
 use App\Models\Company;
 use App\Repositories\Company\CompanyRepository;
 use Illuminate\Http\RedirectResponse;
@@ -18,7 +18,7 @@ class CompanyService
         $this->companyRepository = $companyRepository;
     }
 
-    public function store(StoreRequest $request)
+    public function store(CompanyStoreRequest $request)
     {
         $data = [
             'company_name' => $request->company_name,
@@ -35,7 +35,7 @@ class CompanyService
                     redirect()->back()->with('error', 'Operation failed, company was not able to be created');
     }
 
-    public function update(UpdateRequest $request, Company $company)
+    public function update(CompanyUpdateRequest $request, Company $company)
     {
         $data = [
             'company_name' => $request->company_name,

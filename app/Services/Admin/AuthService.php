@@ -2,7 +2,7 @@
 
 namespace App\Services\Admin;
 
-use App\Http\Requests\Admin\LoginRequest;
+use App\Http\Requests\Admin\AdminLoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,10 +12,10 @@ class AuthService
     /**
      * Attempt to login the admin.
      * 
-     * @param \App\Http\Requests\Admin\LoginRequest $request
+     * @param \App\Http\Requests\Admin\AdminLoginRequest $request
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
-    public function authenticate(LoginRequest $request): RedirectResponse
+    public function authenticate(AdminLoginRequest $request): RedirectResponse
     {
         $check = $request->only('email', 'password');
         if(Auth::guard('admin')->attempt( $check ))

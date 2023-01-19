@@ -2,8 +2,8 @@
 
 namespace App\Services\User;
 
-use App\Http\Requests\User\LoginRequest;
-use App\Http\Requests\User\RegisterRequest;
+use App\Http\Requests\User\UserLoginRequest;
+use App\Http\Requests\User\UserRegisterRequest;
 use App\Models\User;
 use App\Repositories\User\UserRepository;
 use Illuminate\Http\RedirectResponse;
@@ -22,10 +22,10 @@ class AuthService
     /**
      * Attempt to login the admin.
      * 
-     * @param \App\Http\Requests\User\RegisterRequest $request
+     * @param \App\Http\Requests\User\UserRegisterRequest $request
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
-    public function store(RegisterRequest $request): RedirectResponse
+    public function store(UserRegisterRequest $request): RedirectResponse
     {
         $user = new User();
         $user->name = $request->name;
@@ -40,10 +40,10 @@ class AuthService
     /**
      * Handle the authentication of a user.
      * 
-     * @param \App\Http\Requests\User\LoginRequest $request
+     * @param \App\Http\Requests\User\UserLoginRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function authenticate(LoginRequest $request): RedirectResponse
+    public function authenticate(UserLoginRequest $request): RedirectResponse
     {
         $check = $request->only('email', 'password');
         if(Auth::guard('web')->attempt( $check ))
@@ -54,7 +54,7 @@ class AuthService
         }
     }
 
-    public function register(RegisterRequest $request)
+    public function register(UserRegisterRequest $request)
     {
         $data = [
             'name' => $request->name,

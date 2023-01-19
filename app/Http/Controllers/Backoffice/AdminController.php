@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreRequest;
-use App\Http\Requests\Admin\UpdateRequest;
+use App\Http\Requests\Admin\AdminStoreRequest;
+use App\Http\Requests\Admin\AdminUpdateRequest;
 use App\Models\Admin;
 use App\Services\Admin\AdminService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -43,10 +42,10 @@ class AdminController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Admin\StoreRequest  $request
+     * @param  \App\Http\Requests\Admin\AdminStoreRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request)
+    public function store(AdminStoreRequest $request)
     {
         return $this->adminService->store($request);
     }
@@ -76,11 +75,11 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Admin\UpdateRequest  $request
+     * @param  \App\Http\Requests\Admin\AdminUpdateRequest  $request
      * @param  \App\Models\Admin $admin
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateRequest $request, Admin $admin): RedirectResponse
+    public function update(AdminUpdateRequest $request, Admin $admin): RedirectResponse
     {
         $this->adminService->update($request, $admin);
         return redirect()->route('admin.manage.index')->with('success', 'Updated successfully !');

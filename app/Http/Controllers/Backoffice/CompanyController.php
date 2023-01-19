@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Company\StoreRequest;
-use App\Http\Requests\Company\UpdateRequest;
+use App\Http\Requests\Company\CompanyStoreRequest;
+use App\Http\Requests\Company\CompanyUpdateRequest;
 use App\Models\Company;
 use App\Services\Company\CompanyService;
 use Illuminate\Http\RedirectResponse;
@@ -43,10 +43,10 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Company\StoreRequest  $request
+     * @param  \App\Http\Requests\Company\CompanyStoreRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreRequest $request): RedirectResponse
+    public function store(CompanyStoreRequest $request): RedirectResponse
     {
         return $this->companyService->store($request);
     }
@@ -76,11 +76,11 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Company\UpdateRequest  $request
+     * @param  \App\Http\Requests\Company\CompanyUpdateRequest  $request
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateRequest $request, Company $company): RedirectResponse
+    public function update(CompanyUpdateRequest $request, Company $company): RedirectResponse
     {
         $this->companyService->update($request, $company);
         return redirect()->route('admin.company.show', $company->getKey())->with('success', 'Company was updated successfully !');

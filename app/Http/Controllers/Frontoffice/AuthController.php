@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Frontoffice;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\LoginRequest;
-use App\Http\Requests\User\RegisterRequest;
+use App\Http\Requests\User\UserLoginRequest;
+use App\Http\Requests\User\UserRegisterRequest;
 use App\Services\Invitation\InvitationService;
 use App\Services\User\AuthService;
 use Illuminate\Contracts\View\View;
@@ -28,10 +28,10 @@ class AuthController extends Controller
     /**
      * Create a new user
      * 
-     * @param \App\Http\Requests\User\RegisterRequest $request
+     * @param \App\Http\Requests\User\UserRegisterRequest $request
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
-    public function create(RegisterRequest $request): RedirectResponse
+    public function create(UserRegisterRequest $request): RedirectResponse
     {
         return $this->authService->store($request);
     }
@@ -49,10 +49,10 @@ class AuthController extends Controller
     /**
      * Authenticate a user
      * 
-     * @param \App\Http\Requests\User\LoginRequest $request
+     * @param \App\Http\Requests\User\UserLoginRequest $request
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
-    public function authenticate(LoginRequest $request): RedirectResponse
+    public function authenticate(UserLoginRequest $request): RedirectResponse
     {
         return $this->authService->authenticate($request);
     }
@@ -99,10 +99,10 @@ class AuthController extends Controller
     /**
      * Register a new record
      * 
-     * @param \App\Http\Requests\User\RegisterRequest $request
+     * @param \App\Http\Requests\User\UserRegisterRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function register(RegisterRequest $request): RedirectResponse
+    public function register(UserRegisterRequest $request): RedirectResponse
     {
         $this->authService->register($request);
         $this->invitationService->accept($request);

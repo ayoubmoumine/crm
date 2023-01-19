@@ -2,8 +2,8 @@
 
 namespace App\Services\Admin;
 
-use App\Http\Requests\Admin\StoreRequest;
-use App\Http\Requests\Admin\UpdateRequest;
+use App\Http\Requests\Admin\AdminStoreRequest;
+use App\Http\Requests\Admin\AdminUpdateRequest;
 use App\Models\Admin;
 use App\Repositories\Admin\AdminRepository;
 use Illuminate\Http\RedirectResponse;
@@ -22,10 +22,10 @@ class AdminService
     /**
      * Prepare data to store a new resource.
      *
-     * @param  \App\Http\Requests\Admin\StoreRequest  $request
+     * @param  \App\Http\Requests\Admin\AdminStoreRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreRequest $request): RedirectResponse
+    public function store(AdminStoreRequest $request): RedirectResponse
     {
         $data = [
             'name' => $request->name,
@@ -44,7 +44,7 @@ class AdminService
      * @param  \App\Models\Admin $admin
      * @return void
      */
-    public function update(UpdateRequest $request, Admin $admin): void
+    public function update(AdminUpdateRequest $request, Admin $admin): void
     {
         $data = [
             'name' => $request->name,
