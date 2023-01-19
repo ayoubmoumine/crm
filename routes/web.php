@@ -21,11 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//TODO clean the routes + add comments
-//TODO-2 use subdomains
-//TODO-3 Home page should be '/'
-
-Route::domain('www.erp.com')->name('user.')->middleware('prevent.back.history')->group(function(){
+Route::domain('www.crm.com')->name('user.')->middleware('prevent.back.history')->group(function(){
     Route::middleware(['guest:web'])->group(function(){
         Route::get('/login', [UserAuthController::class, 'login'])->name('login');
         Route::get('/register', [UserAuthController::class, 'showRegisterForm'])->name('register');
@@ -45,7 +41,7 @@ Route::domain('www.erp.com')->name('user.')->middleware('prevent.back.history')-
     });
 });
 
-Route::domain('admin.erp.com')->prefix('admin')->name('admin.')->middleware('prevent.back.history')->group(function(){
+Route::domain('admin.crm.com')->prefix('admin')->name('admin.')->middleware('prevent.back.history')->group(function(){
     Route::middleware(['guest:admin'])->group(function(){
         Route::get('/login', [AuthController::class, 'login'])->name('login');
         Route::post('/login', [AuthController::class, "authenticate"])->name('authenticate');

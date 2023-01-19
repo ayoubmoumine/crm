@@ -30,7 +30,16 @@ class Invitation extends Model
     const ACCEPTED_AT_COLUMN = 'accepted_at';
     const CANCELED_AT_COLUMN = 'canceled_at';
 
-    protected $fillable = ['company_id', 'employee_name', 'employee_email', 'status', 'token', 'invitation_link', 'accepted_at', 'canceled_at'];
+    protected $fillable = [
+        'company_id',
+        'employee_name',
+        'employee_email',
+        'status',
+        'token',
+        'invitation_link',
+        'accepted_at',
+        'canceled_at'
+    ];
 
     public function getCompanyID()
     {
@@ -85,10 +94,5 @@ class Invitation extends Model
     public function company()
     {
         return $this->belongsTo(Company::class);
-    }
-    //TODO remove the relationship
-    public function user()
-    {
-        return $this->belongsTo(User::class);
     }
 }

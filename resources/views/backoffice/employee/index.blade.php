@@ -21,7 +21,7 @@
                 <th>Email</th>
                 <th>Company Name</th>
                 <th>Is Complete</th>
-                <th>Interaction Status</th>
+                <th>Completed At</th>
                 <th>Created at</th>
               </tr>
             </thead>
@@ -32,7 +32,7 @@
                   <td>{{ $employee->getEmail() }}</td>
                   <td>{{ $employee->company->getCompanyName() }}</td>
                   <td>{{ $employee->isComplete() }}</td>
-                  <td>{{ $employee->getInteractionStatus() }}</td>
+                  <td>{{ $employee->getCompletedAt() ? date('Y-m-d', strtotime($employee->getCompletedAt())) : '-'; }}</td>
                   <td>{{ date('Y-m-d',strtotime($employee->getCreatedAt())) }}</td>
                 </tr>
               @endforeach

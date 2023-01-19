@@ -10,7 +10,7 @@
         <strong class="card-title">Create Admin</strong>
       </div>
       <div class="card-body">
-        <form action="{{ route('admin.store') }}" method="POST">
+        <form action="{{ route('admin.manage.store') }}" method="POST">
           @csrf
           <div class="form-group">
             <label for="name">Name</label>

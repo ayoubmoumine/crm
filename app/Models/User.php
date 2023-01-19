@@ -27,7 +27,6 @@ class User extends Authenticatable
     const COMPANY_ID_COLUMN = 'company_id';
     const IS_COMPLETE_COLUMN = 'is_complete';
     const COMPLETED_AT_COLUMN = 'completed_at';
-    const INTERACTION_STATUS_COLUMN = 'interaction_status';
     const PASSWORD_COLUMN = 'password';
 
     /**
@@ -43,7 +42,6 @@ class User extends Authenticatable
         self::BIRTHDAY_COLUMN,
         self::IS_COMPLETE_COLUMN,
         self::COMPLETED_AT_COLUMN,
-        self::INTERACTION_STATUS_COLUMN,
         self::COMPANY_ID_COLUMN,
         self::PASSWORD_COLUMN
     ];
@@ -103,9 +101,9 @@ class User extends Authenticatable
         return $this->getAttribute( self::IS_COMPLETE_COLUMN );
     }
 
-    public function getInteractionStatus()
+    public function getCompletedAt()
     {
-        return $this->getAttribute( self::INTERACTION_STATUS_COLUMN );
+        return $this->getAttribute( self::COMPLETED_AT_COLUMN );
     }
 
     public function getCreatedAt()
@@ -116,10 +114,5 @@ class User extends Authenticatable
     public function company()
     {
         return $this->belongsTo( Company::class );
-    }
-    
-    public function invitation()
-    {
-        return $this->belongsTo(Invitation::class);
     }
 }

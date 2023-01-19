@@ -7,7 +7,7 @@ A CRM project based on Laravel, It has two different spaces, one dedicated for t
 1) Run in your terminal:
 
 ``` bash
-git clone //TODO
+git clone https://github.com/ayoubmoumine/crm.git
 ```
 
 2) Configure your host:
@@ -30,13 +30,16 @@ Add the following site
 </VirtualHost>
 ```
 
-4) Set your database information in your .env file (use the .env.example as an example);
+4) Restart your web server 
 
 
-5) Always in the .env file, set ```APP_NAME``` value, cause it s being used in the invitation email, you can give it whatever value you wish
+5) Set your database information in your .env file (use the .env.example as an example);
 
 
-6) Again in the .env file, set a mail server configuration
+6) Always in the .env file, set ```APP_NAME``` value, cause it s being used in the invitation email, you can give it whatever value you wish
+
+
+7) Again in the .env file, set a mail server configuration
 here is an example of one from MailTrap.io
 ``` bash
 MAIL_MAILER=smtp
@@ -48,7 +51,7 @@ MAIL_ENCRYPTION=tls
 ```
 You can feel free to any other smtp server configuration
 
-5) Back to the terminal cd to your project folder and run the following commands:
+8) Back to the terminal cd to your project folder and run the following commands:
 ``` bash
 composer install
 php artisan key:generate

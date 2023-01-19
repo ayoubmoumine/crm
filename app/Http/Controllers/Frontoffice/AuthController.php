@@ -26,21 +26,9 @@ class AuthController extends Controller
     }
 
     /**
-     * Return the view for registering  user
-     * 
-     * 
-     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
-     */
-    //TODO remove function
-    // public function register(): View
-    // {
-    //     return view('user.register');
-    // }
-
-    /**
      * Create a new user
      * 
-     * @param RegisterRequest $request
+     * @param \App\Http\Requests\User\RegisterRequest $request
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
     public function create(RegisterRequest $request): RedirectResponse
@@ -61,7 +49,7 @@ class AuthController extends Controller
     /**
      * Authenticate a user
      * 
-     * @param LoginRequest $request
+     * @param \App\Http\Requests\User\LoginRequest $request
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
     public function authenticate(LoginRequest $request): RedirectResponse
@@ -90,6 +78,12 @@ class AuthController extends Controller
         return redirect()->route('user.authenticate');
     }
 
+    /**
+     * Show register form, for users receiving invitation
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function showRegisterForm(Request $request)
     {
         $invitation = $this->invitationService->getInvitationByToken($request->query('registration_token'));
@@ -102,7 +96,13 @@ class AuthController extends Controller
         ]);
     }
 
-    public function register(RegisterRequest $request)
+    /**
+     * Register a new record
+     * 
+     * @param \App\Http\Requests\User\RegisterRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function register(RegisterRequest $request): RedirectResponse
     {
         $this->authService->register($request);
         $this->invitationService->accept($request);

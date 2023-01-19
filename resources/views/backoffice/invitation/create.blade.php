@@ -1,7 +1,7 @@
 @extends('backoffice.layout')
 @section('content')
 
-<h1 class="page-title">Companies Management</h1>
+<h1 class="page-title">Invitation Management</h1>
 
 <div class="row">
   <div class="col-md-12">

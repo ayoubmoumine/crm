@@ -20,7 +20,6 @@ class RedirectIfProfileNotComplete
      */
     public function handle(Request $request, Closure $next)
     {
-        //TODO apply withoutmiddleware on the route file
         if(!Auth::user()->isComplete())
         {
             return redirect()
