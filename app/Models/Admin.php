@@ -24,9 +24,9 @@ class Admin extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        self::NAME_COLUMN,
+        self::EMAIL_COLUMN,
+        self::CREATED_AT_COLUMN,
     ];
 
     /**
@@ -37,15 +37,6 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'completed_at' => 'datetime',
     ];
 
     public function getName()

@@ -62,8 +62,8 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'completed_at' => 'datetime',
-        'birth_day' => 'datetime',
+        self::COMPLETED_AT_COLUMN => 'datetime',
+        self::BIRTHDAY_COLUMN => 'datetime',
     ];
 
     public function getName()

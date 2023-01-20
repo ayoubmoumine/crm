@@ -25,12 +25,12 @@ class Company extends Model
      * @var array<int, string>
      */
     protected $fillable = [ 
-        'company_name', 
-        'ice',
-        'address', 
-        'country', 
-        'city', 
-        'phone_number', 
+        self::COMPANY_NAME_COLUMN, 
+        self::ICE_COLUMN,
+        self::ADDRESS_COLUMN, 
+        self::COUNTRY_COLUMN, 
+        self::CITY_COLUMN, 
+        self::PHONE_NUMBER_COLUMN, 
     ];
 
     public function getCompanyName()
@@ -70,12 +70,12 @@ class Company extends Model
 
     public function employees()
     {
-        return $this->hasMany( User::class, 'company_id', 'id' );
+        return $this->hasMany( User::class, User::COMPANY_ID_COLUMN, 'id' );
     }
     
     public function invitations()
     {
-        return $this->hasMany( Invitation::class, 'company_id', 'id' );
+        return $this->hasMany( Invitation::class, Invitation::COMPANY_ID_COLUMN, 'id' );
     }
     
     public function scopeFilter($query, array $filters)

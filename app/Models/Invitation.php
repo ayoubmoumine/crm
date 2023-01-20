@@ -31,14 +31,14 @@ class Invitation extends Model
     const CANCELED_AT_COLUMN = 'canceled_at';
 
     protected $fillable = [
-        'company_id',
-        'employee_name',
-        'employee_email',
-        'status',
-        'token',
-        'invitation_link',
-        'accepted_at',
-        'canceled_at'
+        self::COMPANY_ID_COLUMN,
+        self::EMPLOYEE_NAME_COLUMN,
+        self::EMPLOYEE_EMAIL_COLUMN,
+        self::STATUS_COLUMN,
+        self::TOKEN_COLUMN,
+        self::INVITATION_LINK_COLUMN,
+        self::ACCEPTED_AT_COLUMN,
+        self::CANCELED_AT_COLUMN
     ];
 
     public function getCompanyID()
