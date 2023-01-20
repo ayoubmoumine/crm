@@ -11,6 +11,5 @@ Button Text
 
 
 Kindly,<br>
-//TODO add the app name to env file
 Team {{ env('APP_NAME') }}
 @endcomponent
