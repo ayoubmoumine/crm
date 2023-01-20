@@ -17,6 +17,7 @@ class Admin extends Authenticatable
     const NAME_COLUMN = 'name';
     const EMAIL_COLUMN = 'email';
     const CREATED_AT_COLUMN = 'created_at';
+    const PASSWORD_COLUMN = 'password';
 
     /**
      * The attributes that are mass assignable.
@@ -27,6 +28,7 @@ class Admin extends Authenticatable
         self::NAME_COLUMN,
         self::EMAIL_COLUMN,
         self::CREATED_AT_COLUMN,
+        self::PASSWORD_COLUMN
     ];
 
     /**
