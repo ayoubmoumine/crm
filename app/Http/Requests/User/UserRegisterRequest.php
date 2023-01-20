@@ -35,6 +35,7 @@ class UserRegisterRequest extends FormRequest
             ],
             'email' => [
                 'required',
+                'email',
                 'unique:users,email'
             ],
             'company_id' => 'exists:companies,id',

@@ -29,7 +29,8 @@ class InvitationStoreRequest extends FormRequest
             'company_id' => 'required|exists:companies,id',
             'employee_name' => 'required',
             'employee_email' => [
-                'required', 
+                'required',
+                'email',
                 Rule::unique('users', 'email'), 
                 Rule::unique('invitations', 'employee_email')->where(function ($query) {
                     return $query->where(Invitation::STATUS_COLUMN, Invitation::PENDING);
