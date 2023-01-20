@@ -60,6 +60,9 @@ php artisan db:seed
 ```
 
 Note: The seed is to insert records into admins table
+Note 2: password to the seeded admins is: ```password```
+
+
 
 ## After the installation
 
